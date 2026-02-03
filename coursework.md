@@ -30,4 +30,5 @@ subtitle: Graduate level courses
 - Cosmochemistry
 
 ### Miscellaneous
+- Recent Advances in the Origins of Life
 - Search for Extraterrestrial Intelligence
