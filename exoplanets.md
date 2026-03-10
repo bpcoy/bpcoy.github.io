@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Exoplanet Atmospheres
-subtitle:
+subtitle: Probing the Diversity of Exo-Solar Systems
 ---
 
 I am interested in studying the atmospheres of planets outside of our Solar System (`exoplanets') to better understand our place in the cosmos.  Currently, I focus on the smallest planets, typically between the size of Mercury and Neptune.  With the advent of the James Webb Space Telescope, we can begin to study what their atmospheres and surfaces are made of through spectroscopic infrared observations.
