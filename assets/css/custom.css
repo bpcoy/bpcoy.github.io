@@ -1,0 +1,379 @@
+/*
+	Site-specific additions for bpcoy.github.io, layered on top of Hyperspace (main.css).
+	Keep main.css untouched so the template can be upgraded; put all overrides here.
+*/
+
+/* ---------- Accessibility & readability ---------- */
+
+	/* Skip link: hidden until focused by keyboard. */
+	.skip-link {
+		position: absolute;
+		left: -9999px;
+		top: 0;
+		z-index: 20000;
+		background: #ffffff;
+		color: #312450 !important;
+		padding: 0.75em 1.25em;
+		border: 0;
+		font-weight: bold;
+	}
+
+	.skip-link:focus {
+		left: 1em;
+		top: 1em;
+	}
+
+	a:focus-visible,
+	.button:focus-visible {
+		outline: 2px solid #ffffff;
+		outline-offset: 3px;
+	}
+
+	/* Hyperspace's default body text (55% white) is too faint on the pink/blue panels. */
+	.wrapper.style1,
+	.wrapper.style1-alt {
+		color: rgba(255, 255, 255, 0.75);
+	}
+
+	.wrapper.style2,
+	.wrapper.style2-alt,
+	.wrapper.style3,
+	.wrapper.style3-alt {
+		color: rgba(255, 255, 255, 0.82);
+	}
+
+	#main.wrapper {
+		color: rgba(255, 255, 255, 0.72);
+	}
+
+/* ---------- Header nav on small phones ---------- */
+
+	/* The stock header gives each link a 6em-tall row at <=xsmall; keep it to one compact, wrapping row. */
+	@media screen and (max-width: 480px) {
+		#header > nav > ul {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0 1.25em;
+		}
+
+		#header > nav > ul > li {
+			margin-left: 0 !important;
+		}
+
+		#header > nav > ul > li a {
+			height: 3.5em !important;
+			line-height: 3.5em !important;
+		}
+	}
+
+/* ---------- Intro ---------- */
+
+	#intro .tagline {
+		font-size: 1.15em;
+		max-width: 40em;
+	}
+
+	#intro .affiliation {
+		color: rgba(255, 255, 255, 0.55);
+		font-size: 0.8em;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		margin-bottom: 1em;
+	}
+
+	/* Text on the left, round headshot on the right; photo stacks on top on phones. */
+	#intro .intro-layout {
+		display: flex;
+		align-items: center;
+		gap: 3em;
+	}
+
+	#intro .intro-text {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	#intro .headshot {
+		flex: 0 0 auto;
+		width: 15em;
+		height: 15em;
+		margin: 0;
+		border-radius: 50%;
+		overflow: hidden;
+		border: solid 6px rgba(255, 255, 255, 0.15);
+		box-shadow: 0 0.75em 2.5em rgba(0, 0, 0, 0.25);
+	}
+
+	#intro .headshot img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	@media screen and (max-width: 1280px) {
+		#intro .headshot {
+			width: 12em;
+			height: 12em;
+		}
+	}
+
+	@media screen and (max-width: 736px) {
+		#intro .intro-layout {
+			flex-direction: column-reverse;
+			align-items: flex-start;
+			gap: 1.5em;
+		}
+
+		#intro .headshot {
+			width: 8.5em;
+			height: 8.5em;
+			border-width: 4px;
+		}
+	}
+
+/* ---------- Spotlights ---------- */
+
+	/* For research figures (plots), show the whole figure instead of a cropped "cover" image. */
+	.spotlights > section > .image.contain {
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-color: #ffffff;
+	}
+
+/* ---------- Lead paragraphs, figures, captions ---------- */
+
+	p.lead {
+		font-size: 1.15em;
+		color: rgba(255, 255, 255, 0.85);
+	}
+
+	figure.figure {
+		margin: 0 0 2em 0;
+	}
+
+	figure.figure img {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 0.25em;
+		background: #ffffff;
+	}
+
+	figure.figure figcaption {
+		font-size: 0.8em;
+		line-height: 1.6;
+		color: rgba(255, 255, 255, 0.6);
+		margin-top: 0.75em;
+	}
+
+	/* Narrower figure for tall/square plots so they don't dominate the page. */
+	figure.figure.narrow {
+		max-width: 36em;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+/* ---------- Tags / badges ---------- */
+
+	.badge {
+		display: inline-block;
+		font-size: 0.6em;
+		font-weight: bold;
+		letter-spacing: 0.15em;
+		line-height: 1;
+		padding: 0.5em 0.75em;
+		border-radius: 0.25em;
+		text-transform: uppercase;
+		vertical-align: middle;
+		background: rgba(255, 255, 255, 0.15);
+		color: #ffffff;
+		white-space: nowrap;
+	}
+
+	.badge.pi       { background: #b74e91; }
+	.badge.coi      { background: #5052b5; }
+	.badge.inprep   { background: rgba(255, 255, 255, 0.12); }
+	.badge.submitted{ background: #5052b5; }
+	.badge.accepted { background: #2a8171; }
+
+/* ---------- Publications ---------- */
+
+	ol.pub-list {
+		list-style: none;
+		padding-left: 0;
+		counter-reset: pub;
+	}
+
+	ol.pub-list > li {
+		position: relative;
+		counter-increment: pub;
+		padding: 1.25em 0 1.25em 3em;
+		border-top: solid 1px rgba(255, 255, 255, 0.15);
+	}
+
+	ol.pub-list > li:first-child {
+		border-top: 0;
+	}
+
+	ol.pub-list > li::before {
+		content: counter(pub);
+		position: absolute;
+		left: 0;
+		top: 1.25em;
+		width: 2em;
+		text-align: right;
+		font-weight: bold;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.pub-title {
+		display: block;
+		color: #ffffff;
+		font-weight: bold;
+		line-height: 1.5;
+		margin-bottom: 0.25em;
+	}
+
+	.pub-authors {
+		display: block;
+		font-size: 0.9em;
+	}
+
+	.pub-authors .me {
+		color: #ffffff;
+		font-weight: bold;
+		border-bottom: solid 2px #b74e91;
+	}
+
+	.pub-venue {
+		display: block;
+		font-size: 0.9em;
+		font-style: italic;
+	}
+
+	.pub-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5em 1em;
+		margin-top: 0.5em;
+		font-size: 0.8em;
+	}
+
+	.pub-note {
+		font-size: 0.8em;
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+/* ---------- CV-style rows (role on the left, dates on the right) ---------- */
+
+	ul.cv-list {
+		list-style: none;
+		padding-left: 0;
+	}
+
+	ul.cv-list > li {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 0 1.5em;
+		padding: 0.85em 0;
+		border-top: solid 1px rgba(255, 255, 255, 0.15);
+	}
+
+	ul.cv-list > li:first-child {
+		border-top: 0;
+	}
+
+	ul.cv-list .cv-what {
+		flex: 1 1 24em;
+	}
+
+	ul.cv-list .cv-what strong {
+		color: #ffffff;
+	}
+
+	ul.cv-list .cv-detail {
+		display: block;
+		font-size: 0.9em;
+	}
+
+	ul.cv-list .cv-when {
+		flex: 0 0 auto;
+		font-size: 0.85em;
+		color: rgba(255, 255, 255, 0.6);
+		white-space: nowrap;
+	}
+
+	ul.cv-list ul {
+		margin: 0.5em 0 0 0;
+		font-size: 0.9em;
+	}
+
+/* ---------- Research topic switcher (bottom of research pages) ---------- */
+
+	nav.topic-nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 1em;
+		margin-top: 3em;
+		padding-top: 2em;
+		border-top: solid 1px rgba(255, 255, 255, 0.15);
+	}
+
+	/* Stock buttons never wrap, so long labels ("Lava World and sub-Neptune Atmospheres") would overflow on phones.
+	   These wrap instead; on one line they are the same height as a stock button (1.6 + 2 × 1.575 = 4.75em). */
+	nav.topic-nav .button,
+	.button.wrap {
+		white-space: normal;
+		height: auto;
+		line-height: 1.6;
+		padding: 1.575em 3.75em;
+	}
+
+	@media screen and (max-width: 480px) {
+		nav.topic-nav .button,
+		.button.wrap {
+			padding-left: 2em;
+			padding-right: 2em;
+		}
+	}
+
+/* ---------- Button rows ---------- */
+
+	/* Hyperspace's ul.actions never wraps above 480px (it stacks below that), so a row of long labels
+	   (e.g. the About section's three buttons) overflows tablets. Let rows wrap, with the row gap
+	   matching the template's 1em horizontal gap; left unchanged at <=480px where the template stacks. */
+	@media screen and (min-width: 481px) {
+		ul.actions:not(.stacked) {
+			flex-wrap: wrap;
+			row-gap: 1em;
+		}
+	}
+
+/* ---------- Embedded PDF (poster) ---------- */
+
+	.pdf-embed {
+		position: relative;
+		width: 100%;
+		padding-top: 75%;
+		margin-bottom: 1em;
+		background: rgba(255, 255, 255, 0.05);
+		border-radius: 0.25em;
+		overflow: hidden;
+	}
+
+	.pdf-embed iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+
+/* ---------- Contact list links ---------- */
+
+	ul.contact a {
+		word-break: break-word;
+	}
